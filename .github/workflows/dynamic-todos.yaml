@@ -1,0 +1,28 @@
+name: Dynamic Todos
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  dynamic_todos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update issue with dynamic todos
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const issue = context.issue;
+            const issueTitle = context.payload.issue.title;
+            
+            // Generate dynamic todos based on the issue title or other conditions
+            const todo = `- [ ] ${issueTitle}`;
+            
+            // Append the dynamic todos to the issue description
+            const updatedDescription = `${context.payload.issue.body}\n\n## Todos\n${todo}`;
+            
+            // Update the issue using the GitHub API
+            await github.rest.issues.update({
+              ...issue,
+              body: updatedDescription
+            });

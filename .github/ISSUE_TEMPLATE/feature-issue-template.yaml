@@ -1,0 +1,15 @@
+name: feature-issue-template
+description: 'Use this template for new feature requests'
+about: Enhancement / Create Features
+title: "[FEAT] "
+labels: ""
+assignees: ''
+body:
+  - type: textarea
+    attributes:
+      label: 'Description'
+      description: 'Describe the feature'
+      placeholder: 'Describe the feature'
+    validations:
+      required: true
+
